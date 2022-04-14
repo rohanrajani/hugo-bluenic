@@ -1,5 +1,5 @@
 ---
-title: "About Us"
+title: "About Rohan Rajani"
 # page header background image
 # page_header_bg: "images/banner.jpg"
 # meta description
@@ -12,4 +12,3 @@ aboutcontent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 # viewproducts: "our-products"
 draft: false
 ---
-
