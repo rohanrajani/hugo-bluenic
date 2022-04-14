@@ -1,0 +1,30 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+<div class="sidebar">
+    <div class="sidebar-widget post-single">
+      <h2 class="title">Latest News</h2>
+      {{ $link := .Permalink}}
+      {{ range (.GetTerms "tags") }}
+      {{ $tags := .LinkTitle }}
+      {{$page := where .Pages "Type" "news" }}
+      {{ range first 4 $page }}
+      {{ $title := .Params.newstitle }}
+      {{ $image := .Params.image | relURL }}
+      {{ $date := .Date.Format "January 2, 2006" }}
+      {{ $slug := .Permalink}}
+      {{ range (.GetTerms "tags") }}
+      {{ if eq .LinkTitle $tags}}
+      {{ if ne $slug $link}}
+      <article class="media">
+        <a href="{{$slug}}"><img src="{{$image}}" alt="{{$title}}"></a>
+        <div class="media-body">
+          <h6> <a href="{{$slug}}">{{$title}}</a> </h6>
+          <p>{{$date}}</p>
+        </div>
+      </article>
+      {{ end }}
+      {{ end }}
+      {{ end }}
+      {{ end }}
+      {{ end }}
+    </div>
+</div>

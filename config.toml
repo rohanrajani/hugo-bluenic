@@ -1,0 +1,191 @@
+######################## default configuration ####################
+baseURL = "/"
+title = "my first site"
+theme = "blueneek"
+# post pagination
+paginate = "6"
+# post excerpt
+summaryLength = "10"
+# google analytics
+googleAnalytics = "" # example : UA-123-45
+# disqus short name
+disqusShortname = "#" # get your shortname form here : https://disqus.com
+[permalinks]
+  news = '/:slug/'
+  psyllium-products = '/:slug/'
+  oil-seeds = '/:slug/'
+  spices-and-herbs = '/:slug/'
+
+############################# Outputs ##############################
+[outputs]
+home = ["HTML", "RSS"]
+
+[markup.goldmark.renderer]
+unsafe= true
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css" 
+[[params.plugins.css]]
+link = "plugins/style/style.css" 
+[[params.plugins.css]]
+link = "plugins/responsive/responsive.css" 
+[[params.plugins.css]]
+link = "plugins/jquery-mCustomScrollbar/jquery.mCustomScrollbar.min.css" 
+[[params.plugins.css]]
+link = "plugins/font-awesome/font-awesome.css"
+[[params.plugins.css]]
+link = "plugins/jquery-fancybox/jquery.fancybox.min.css" 
+
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jquery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/popper/popper.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.bundle.min.js"
+[[params.plugins.js]]
+link = "plugins/jquery/jquery-3.0.0.min.js"
+[[params.plugins.js]]
+link = "plugins/jquery-mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"
+[[params.plugins.js]]
+link = "plugins/custom/custom.js"
+[[params.plugins.js]]
+link = "plugins/jquery-fancybox/jquery.fancybox.min.js"
+
+############################## English navigation ###############################
+# [menu]
+  # [[Languages.en.menu.main]]
+  # name = "Home"
+  # URL = "/"
+  # weight = 1
+
+  [[Languages.en.menu.main]]
+  name = "About Us"
+  URL = "/about"
+  weight = 2
+
+  [[Languages.en.menu.main]]
+  identifier = "Our Clients"
+  name = "Our Clients"
+  URL = "/clients"
+  weight = 3
+
+  [[Languages.en.menu.main]]
+  identifier = "Our Work"
+  name = "Our Work"
+  URL = "/ourwork"
+  weight = 4
+
+  [[Languages.en.menu.main]]
+  identifier = "Contact Us"
+  name = "Contact Us"
+  URL = "/contact"
+  weight = 5
+
+#################### default parameters ################################
+[params]
+logo = "images/logo.png"
+footerlogo = "images/footerlogo.png"
+home = "Home"
+# Meta data
+description = "This is meta description"
+author = "Patel Services Pty Ltd"
+headertitle = "Welcome to Patel Services Pty Ltd"
+headershortaddress = "Brisbane, Australia"
+address = "1/3 Chetwynd St, Loganholme QLD 4129, Australia"
+phone = "0731087791"
+email1 = "sales@patelservices.com.au"
+email2 = "admin@patelservices.com.au"
+# contact form action
+footercontent = "PSP is a family run, Australian owned and operated business in Brisbane, Queensland since 2013. Our target is to provide the variety of spices and herbs in bulk to our customers. Until Now, PSP served to different industries such as bakery, wholefood stores, Health food stores, Pastry shops, Food stores, Restaurants, Grocery stores etc. by providing the fresh and best quality of spices and herbs."
+# copyright
+copyright = "© 2013-2019 Patel Services pty. ltd."
+designdevelop = "Designed & Developed by : [Atcults](https://atcults.com/)  "
+
+################################### English language #####################################
+[Languages.en]
+languageName = "En"
+languageCode = "en-us"
+contentDir = "content/english"
+weight = 1
+# copyright
+copyright = "© 2013-2019 Patel Services pty. ltd. "
+
+
+################################### Deployment Script #####################################
+
+[deployment]
+# By default, files are uploaded in an arbitrary order.
+# Files that match the regular expressions in the "Order" list
+# will be uploaded first, in the listed order.
+order = [".jpg$", ".gif$"]
+
+# [[deployment.targets]]
+# An arbitrary name for this target.
+# name = "awsdeploy"
+# The Go Cloud Development Kit URL to deploy to. Examples:
+# GCS; see https://gocloud.dev/howto/blob/#gcs
+# URL = "gs://<Bucket Name>"
+
+#[[deployment.targets]]
+# An arbitrary name for this target.
+# name = "awsdeploy"
+# S3; see https://gocloud.dev/howto/blob/#s3
+# For S3-compatible endpoints, see https://gocloud.dev/howto/blob/#s3-compatible
+# URL = "s3://<Bucket Name>?region=<AWS region>"
+
+# Azure Blob Storage; see https://gocloud.dev/howto/blob/#azure
+# URL = "azblob://$web"
+
+# You can use a "prefix=" query parameter to target a subfolder of the bucket:
+# URL = "gs://<Bucket Name>?prefix=a/subfolder/"
+
+# If you are using a CloudFront CDN, deploy will invalidate the cache as needed.
+# cloudFrontDistributionID = <ID>
+
+[[deployment.targets]]
+ name = "awsdeploy"
+ URL = "s3://atcultsbeta?region=ap-south-1"
+ cloudFrontDistributionID = "EEU5QY8VOOF3L"
+
+# Optionally, you can include or exclude specific files.
+# See https://godoc.org/github.com/gobwas/glob#Glob for the glob pattern syntax.
+# If non-empty, the pattern is matched against the local path.
+# All paths are matched against in their filepath.ToSlash form.
+# If exclude is non-empty, and a local or remote file's path matches it, that file is not synced.
+# If include is non-empty, and a local or remote file's path does not match it, that file is not synced.
+# As a result, local files that don't pass the include/exclude filters are not uploaded to remote,
+# and remote files that don't pass the include/exclude filters are not deleted.
+# include = "**.html" # would only include files with ".html" suffix
+# exclude = "**.{jpg, png}" # would exclude files with ".jpg" or ".png" suffix
+
+# [[deployment.matchers]] configure behavior for files that match the Pattern.
+# See https://golang.org/pkg/regexp/syntax/ for pattern syntax.
+# Pattern searching is stopped on first match.
+
+# Samples:
+
+[[deployment.matchers]]
+# Cache static assets for 1 year.
+pattern = "^.+\\.(js|css|svg|ttf)$"
+cacheControl = "max-age=31536000, no-transform, public"
+gzip = true
+
+[[deployment.matchers]]
+pattern = "^.+\\.(png|jpg)$"
+cacheControl = "max-age=31536000, no-transform, public"
+gzip = false
+
+[[deployment.matchers]]
+# Set custom content type for /sitemap.xml
+pattern = "^sitemap\\.xml$"
+contentType = "application/xml"
+gzip = true
+
+[[deployment.matchers]]
+pattern = "^.+\\.(html|xml|json)$"
+gzip = true
